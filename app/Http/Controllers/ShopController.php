@@ -22,19 +22,19 @@ class ShopController extends Controller
     }
 
     public function login(){
-        return Inertia::render('/Login')->json(['status' => true]);
+        return Inertia::render('/login')->json(['status' => true]);
     }
 
     public function productlist(){
-        return Inertia::render('Shop/ProductList')->json(['status' => true]);
+        return Inertia::render('shop/productlist')->json(['status' => true]);
     }
 
     public function userproductlist(){
-        return Inertia::render('User/ProductList')->json(['status' => true]);
+        return Inertia::render('user/productlist')->json(['status' => true]);
     }
 
     public function orderlist(){
-        return Inertia::render('User/OrderList')->json(['status' => true]);
+        return Inertia::render('user/orderlist')->json(['status' => true]);
     }
 
     //product management api route
