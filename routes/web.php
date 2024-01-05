@@ -48,7 +48,7 @@ Route::get('/login',function(){
 });
 
 Route::get('/register',function (){
-    return Inertia::render('Register',[ShopController::class,'register'])
+    return Inertia::render('Register',[ShopController::class,'register']);
 });
 
 Route::get('/product-list',function(){
