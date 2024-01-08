@@ -14,33 +14,33 @@ class ShopController extends Controller
 {
     //response the controller on website
     public function index(){
-        return Inertia::render('/')->json(['status' => true]);
+        return Inertia::render('/Shop');
     }
 
     public function register(){
-        return Inertia::render('/register')->json(['status' => true]);
+        return Inertia::render('/Shop/Register');
     }
 
     public function login(){
-        return Inertia::render('/login')->json(['status' => true]);
+        return Inertia::render('/Shop/Login');
     }
 
     public function productlist(){
-        return Inertia::render('shop/productlist')->json(['status' => true]);
+        return Inertia::render('/Shop/ProductList');
     }
 
     public function userproductlist(){
-        return Inertia::render('user/productlist')->json(['status' => true]);
+        return Inertia::render('/User/ProductList');
     }
 
     public function orderlist(){
-        return Inertia::render('user/orderlist')->json(['status' => true]);
+        return Inertia::render('/User/OrderList');
     }
 
     //product management api route
     public function productdestroy($id){
         Product::find($id)->delete();
-        return redirect()->route('product.list')->json(['status' => true]);
+        return redirect()->route('product.list');
     }
 
     public function productupdate($id, Request $request){
@@ -52,7 +52,7 @@ class ShopController extends Controller
         ])->validate();
 
         Product::find($id)->update($request->all());
-        return redirect()->route('product.list')->json(['status' => true]);
+        return redirect()->route('product.list');
     }
 
     public function productcreate(Request $request){
@@ -64,13 +64,13 @@ class ShopController extends Controller
         ])->validate();
 
         Product::insert($request->all());
-        return redirect()->route('product.list')->json(['status' => true]);
+        return redirect()->route('product.list');
     }
 
     //order management api route
     public function orderdestroy($id){
       Order::find($id)->delete();
-      return redirect()->route('order.list')->json(['status' => true]);
+      return redirect()->route('order.list');
     }
 
     public function orderupdate($id, Request $request){
@@ -82,7 +82,7 @@ class ShopController extends Controller
         ])->validate();
 
         Order::find($id)->update($request->all());
-        return redirect()->route('order.list')->json(['status' => true]);
+        return redirect()->route('order.list');
     }
 
     public function ordercreate(Request $request){
@@ -97,7 +97,7 @@ class ShopController extends Controller
         ])->validate();
 
         Order::insert($request->all());
-        return redirect()->route('order.list')->json(['status' => true]);
+        return redirect()->route('order.list');
     }
 
     //staff order update api route
@@ -107,12 +107,12 @@ class ShopController extends Controller
         ]);
 
         Order::find($id)->update($request->all());
-        return redirect()->route('order.list')->json(['status' => true]);
+        return redirect()->route('order.list');
     }
 
     //register insertation api route
     public function userregister(){
-        return Inertia::render('User/Register');
+        return Inertia::render('/User/Register');
     }
 
     //user login api route while type = 'user'
@@ -130,7 +130,7 @@ class ShopController extends Controller
         if(auth()->attempt($credentials, $request->filled('remember'))) {
             return response()->json(['status' => true, 'user' => auth()->user()])->route('user.index');
         }
-        return response()->route('user.login')->json(['status' => false, 'message' => 'invalid username or password'], 500);
+        return response()->route('user.login');
     }
 
     //user logout api route
@@ -138,7 +138,7 @@ class ShopController extends Controller
         auth('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return response()->route('user.login')->json(['status' => true, 'message' => 'logged out']);
+        return response()->route('user.login');
     }
 
     //user insertation form registartion page
@@ -151,7 +151,7 @@ class ShopController extends Controller
         ])->validate();
 
         User::insert($request->all());
-        return redirect()->route('confirm.index')->json(['status' => true]);
+        return redirect()->route('confirm.index');
     }
 
     //staff register insertation api route
@@ -164,13 +164,13 @@ class ShopController extends Controller
         ])->validate();
 
         User::insert($request->all());
-        return redirect()->route('confirm.index')->json(['status' => true]);
+        return redirect()->route('confirm.index');
     }
 
     //staff register delete api route
     public function staffuserdelete($id){
       User::find($id)->where('type','=','staff')->delete();
-      return redirect()->route('staff.list')->json(['status' => true]);
+      return redirect()->route('staff.list');
     }
 
 }
