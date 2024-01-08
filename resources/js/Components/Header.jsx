@@ -9,8 +9,12 @@ function Header() {
             "url" :"/",
         },
         {
-            "name": "Blog",
-            "url" :"/blog",
+            "name": "Login",
+            "url" :"/login",
+        },
+        {
+            "name": "Register",
+            "url" :"/Register",
         },
         {
             "name": "About",
